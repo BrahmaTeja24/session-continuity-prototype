@@ -14,5 +14,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "allowScripts": {
+    "esbuild": true
+  }
 }
