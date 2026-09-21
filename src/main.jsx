@@ -290,10 +290,6 @@ function DeviceHome({ go }) {
   return (
     <div className="phone-screen device-home">
 
-      <div className="device-time">
-        9:41
-      </div>
-
       <div className="switch-title">
         <small>ANDROID HOME</small>
 
