@@ -84,3 +84,266 @@ h1 span{color:#44528b}
 footer{height:50px;border-top:1px solid var(--line);background:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 5vw;color:#8a94aa;font-size:10px}
 @media(max-width:900px){.layout{grid-template-columns:1fr;gap:30px}.hero-copy{max-width:650px;margin:auto}.phone-wrap{order:-1}.phone{width:330px}h1{font-size:45px}.flow{flex-wrap:wrap}}
 @media(max-width:500px){.layout{width:92vw;padding-top:25px}.topbar{padding:0 4vw}.brand{font-size:12px}.demo-pill{font-size:8px}.phone{transform:scale(.92);transform-origin:top center;margin-bottom:-45px}.flow{gap:6px}.flow-step{font-size:8px}.arrow{font-size:12px}}
+/* ============================= */
+/* APP SWITCHING EXPERIENCE      */
+/* ============================= */
+
+.phone-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 42px;
+  padding: 0 28px;
+  border-top: 1px solid rgba(20, 30, 60, 0.08);
+  background: #ffffff;
+}
+
+.phone-nav button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 19px;
+  color: #111936;
+  width: 42px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-nav .nav-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: #111936;
+}
+
+
+/* Android home */
+
+.device-home {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(105, 125, 180, 0.12), transparent 40%),
+    #f5f7fb;
+}
+
+.device-time {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #59627d;
+  margin-bottom: 14px;
+}
+
+.switch-title {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.switch-title small {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #7280a2;
+  font-weight: 700;
+}
+
+.switch-title h2 {
+  margin: 7px 0 5px;
+}
+
+.switch-title p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6d7690;
+}
+
+
+/* App icons */
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 12px;
+}
+
+.fake-app {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #19213c;
+}
+
+.fake-app span {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(20, 30, 60, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.fake-app b {
+  font-size: 8px;
+  font-weight: 600;
+}
+
+
+/* Context preservation message */
+
+.switch-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 12px;
+  padding: 12px;
+  border: 1px solid #dfe5f0;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+}
+
+.switch-message > span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef3ff;
+}
+
+.switch-message b {
+  display: block;
+  font-size: 10px;
+  color: #18213e;
+}
+
+.switch-message small {
+  display: block;
+  margin-top: 3px;
+  font-size: 8px;
+  color: #7b849c;
+}
+
+
+/* Browser */
+
+.browser-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px 14px;
+}
+
+.browser-top > span {
+  font-size: 20px;
+}
+
+.browser-address {
+  flex: 1;
+  background: #f0f2f7;
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 9px;
+  color: #67708a;
+}
+
+.browser-content {
+  text-align: center;
+  padding: 28px 16px 15px;
+}
+
+.browser-icon {
+  font-size: 32px;
+}
+
+.browser-content h2 {
+  margin: 8px 0 4px;
+}
+
+.browser-content p {
+  font-size: 10px;
+  color: #737c94;
+  line-height: 1.5;
+}
+
+.browser-card {
+  text-align: left;
+  margin-top: 20px;
+  padding: 13px;
+  border-radius: 13px;
+  background: #f6f7fa;
+}
+
+.browser-card span,
+.browser-card small {
+  display: block;
+  font-size: 8px;
+  color: #7a8399;
+}
+
+.browser-card b {
+  display: block;
+  margin: 6px 0;
+  font-size: 10px;
+}
+
+.return-card {
+  margin-top: auto;
+  padding: 13px;
+  border-top: 1px solid #e6e9f0;
+  background: #ffffff;
+}
+
+.return-card > span {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #7080a4;
+  margin-bottom: 5px;
+}
+
+.return-card > b {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+
+/* Better interruption message */
+
+.save-card {
+  width: 100%;
+}
+
+.checkrow {
+  padding: 7px 0;
+  font-size: 9px;
+}
+
+
+/* Small transition feel */
+
+.phone-screen {
+  animation: screenFade 0.25s ease;
+}
+
+@keyframes screenFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
