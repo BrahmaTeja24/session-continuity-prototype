@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div className="brand"><span className="brand-mark">iQOO</span><span>Session Continuity</span></div>
+        <div className="brand"><span>Session Continuity</span></div>
         <div className="demo-pill">INTERACTIVE MVP</div>
       </header>
 
