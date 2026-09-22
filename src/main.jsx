@@ -25,9 +25,9 @@ function App() {
   const label =
     screen === "home" ? "SESSION HOME" :
     screen === "task" ? "WORKING" :
-    screen === "deviceHome" ? "APP SWITCHING" :
-    screen === "browser" ? "OTHER APP" :
-    screen === "interrupt" ? "INTERRUPTION" :
+    screen === "deviceHome" ? "ANDROID HOME" :
+    screen === "files" ? "FILES" :
+    screen === "contextLost" ? "CONTEXT GAP" :
     screen === "recovery" ? "RECOVERY" :
     "RESUMED";
 
@@ -44,7 +44,6 @@ function App() {
       <main className="layout">
 
         <section className="hero-copy">
-
           <div className="eyebrow">
             PRODUCTIVITY · PHONE-FIRST AI
           </div>
@@ -55,12 +54,12 @@ function App() {
           </h1>
 
           <p className="lead">
-            A concept prototype showing how an AI-powered session layer can help a user
-            understand and resume an interrupted mobile task.
+            What happens when you leave an interrupted task to do something
+            else — and return without remembering what you were doing next?
           </p>
 
           <div className="flow">
-            {["WORK", "SWITCH", "RECOVER", "RESUME"].map((x, i) => (
+            {["WORK", "SWITCH", "CONTEXT GAP", "RECOVER"].map((x, i) => (
               <React.Fragment key={x}>
                 <div className={"flow-step " + (i === 0 ? "active" : "")}>
                   {x}
@@ -71,11 +70,11 @@ function App() {
           </div>
 
           <div className="note">
-            <strong>Prototype scope:</strong> controlled demo application + simulated
-            app switching. This demonstrates the user experience, not universal
-            Android OS-level recovery.
+            <strong>Prototype scope:</strong>{" "}
+            controlled scholarship application + simulated Android app
+            switching. The demo illustrates task-context recovery, not
+            universal Android OS-level recovery.
           </div>
-
         </section>
 
         <section className="phone-wrap">
@@ -92,32 +91,12 @@ function App() {
             {screen === "home" && <Home go={go} />}
             {screen === "task" && <Task go={go} />}
             {screen === "deviceHome" && <DeviceHome go={go} />}
-            {screen === "browser" && <Browser go={go} />}
-            {screen === "interrupt" && <Interrupt go={go} />}
+            {screen === "files" && <Files go={go} />}
+            {screen === "contextLost" && <ContextGap go={go} />}
             {screen === "recovery" && <Recovery go={go} />}
             {screen === "resumed" && <Resumed go={go} />}
 
-            <div className="phone-nav">
-
-              <button onClick={() => go("task")} aria-label="Back">
-                ‹
-              </button>
-
-              <button
-                className="nav-dot"
-                onClick={() => go("deviceHome")}
-                aria-label="Home"
-              >
-              </button>
-
-              <button
-                onClick={() => go("deviceHome")}
-                aria-label="Recent apps"
-              >
-                ▢
-              </button>
-
-            </div>
+            <PhoneNav screen={screen} go={go} />
 
           </div>
 
@@ -175,12 +154,14 @@ function Home({ go }) {
       </div>
 
       <div className="mini-insight">
+
         <span className="insight-icon">✦</span>
 
         <div>
           <b>Context ready</b>
           <p>Next action: Upload certificate</p>
         </div>
+
       </div>
 
       <div className="section-title">
@@ -188,6 +169,7 @@ function Home({ go }) {
       </div>
 
       <div className="three-mini">
+
         <div>
           <b>Context</b>
           <span>What you were doing</span>
@@ -202,6 +184,7 @@ function Home({ go }) {
           <b>Next</b>
           <span>What to do next</span>
         </div>
+
       </div>
 
       <button
@@ -216,7 +199,7 @@ function Home({ go }) {
 }
 
 
-/* ---------------- SCHOLARSHIP TASK ---------------- */
+/* ---------------- WORKING TASK ---------------- */
 
 function Task({ go }) {
 
@@ -237,7 +220,9 @@ function Task({ go }) {
           <h2>Personal details</h2>
         </div>
 
-        <div className="score">7/9</div>
+        <div className="score">
+          7/9
+        </div>
 
       </div>
 
@@ -245,14 +230,13 @@ function Task({ go }) {
 
         {fields.slice(0, 7).map(([k, v]) => (
 
-          <div className="field done" key={k}>
-
+          <div
+            className="field done"
+            key={k}
+          >
             <span>{k}</span>
-
             <b>{v}</b>
-
             <i>✓</i>
-
           </div>
 
         ))}
@@ -263,19 +247,25 @@ function Task({ go }) {
 
         <span>NEXT ACTION</span>
 
-        <b>Upload certificate</b>
+        <b>
+          Upload certificate
+        </b>
+
+        <small className="intent-line">
+          Intent: find certificate from Files
+        </small>
 
       </div>
 
       <button
-        className="primary wide"
+        className="primary wide switch-button"
         onClick={() => go("deviceHome")}
       >
         SWITCH TO ANOTHER APP
       </button>
 
       <p className="tiny">
-        Demo: the user leaves the scholarship application to do something else.
+        The user needs to leave the form temporarily to find the certificate.
       </p>
 
     </div>
@@ -288,69 +278,117 @@ function Task({ go }) {
 function DeviceHome({ go }) {
 
   return (
-    <div className="phone-screen device-home">
+    <div className="phone-screen android-home">
 
-      <div className="switch-title">
-        <small>ANDROID HOME</small>
+      <div className="android-time">
+        9:41
+      </div>
 
-        <h2>You switched away</h2>
-
-        <p>
-          The scholarship application is no longer in the foreground.
-        </p>
+      <div className="home-message">
+        <b>Working context is being preserved</b>
+        <span>
+          You're temporarily doing something else.
+        </span>
       </div>
 
       <div className="app-grid">
 
-        <button
-          className="fake-app"
-          onClick={() => go("browser")}
-        >
-          <span>🌐</span>
-          <b>Browser</b>
+        <button onClick={() => go("files")}>
+          <div className="app-icon files-icon">📁</div>
+          <span>Files</span>
         </button>
 
-        <button
-          className="fake-app"
-          onClick={() => go("browser")}
-        >
-          <span>📁</span>
-          <b>Files</b>
+        <button>
+          <div className="app-icon browser-icon">🌐</div>
+          <span>Browser</span>
         </button>
 
-        <button
-          className="fake-app"
-          onClick={() => go("browser")}
-        >
-          <span>✉️</span>
-          <b>Mail</b>
+        <button>
+          <div className="app-icon mail-icon">✉</div>
+          <span>Mail</span>
         </button>
 
-        <button
-          className="fake-app"
-          onClick={() => go("browser")}
-        >
-          <span>📄</span>
-          <b>Documents</b>
+        <button>
+          <div className="app-icon docs-icon">▤</div>
+          <span>Documents</span>
         </button>
 
       </div>
 
-      <div className="switch-message">
-        <span>↗</span>
-        <div>
-          <b>Working context is being preserved</b>
-          <small>
-            Task • progress • next action
-          </small>
+      <div className="home-hint">
+        Find your certificate
+      </div>
+
+    </div>
+  );
+}
+
+
+/* ---------------- FILES APP ---------------- */
+
+function Files({ go }) {
+
+  return (
+    <div className="phone-screen files-screen">
+
+      <div className="files-header">
+
+        <div
+          className="back"
+          onClick={() => go("deviceHome")}
+        >
+          ‹
         </div>
+
+        <div>
+          <small>FILES</small>
+          <h2>Recent files</h2>
+        </div>
+
+      </div>
+
+      <div className="search-box">
+        🔍 Search files
+      </div>
+
+      <div className="file-item">
+
+        <div className="pdf-icon">
+          PDF
+        </div>
+
+        <div>
+          <b>Academic_Certificate.pdf</b>
+          <span>2.4 MB • Documents</span>
+        </div>
+
+      </div>
+
+      <div className="file-item">
+
+        <div className="pdf-icon">
+          PDF
+        </div>
+
+        <div>
+          <b>Semester_Marksheet.pdf</b>
+          <span>1.8 MB • Documents</span>
+        </div>
+
+      </div>
+
+      <div className="file-found">
+        ✓ Certificate found
+        <small>
+          Now return to the scholarship application.
+        </small>
       </div>
 
       <button
-        className="secondary wide"
-        onClick={() => go("browser")}
+        className="primary wide"
+        onClick={() => go("contextLost")}
       >
-        OPEN BROWSER
+        RETURN TO SCHOLARSHIP
       </button>
 
     </div>
@@ -358,124 +396,63 @@ function DeviceHome({ go }) {
 }
 
 
-/* ---------------- OTHER APP ---------------- */
+/* ---------------- CONTEXT GAP ---------------- */
 
-function Browser({ go }) {
-
-  return (
-    <div className="phone-screen">
-
-      <div className="browser-top">
-
-        <span>‹</span>
-
-        <div className="browser-address">
-          example.com
-        </div>
-
-      </div>
-
-      <div className="browser-content">
-
-        <div className="browser-icon">
-          🌐
-        </div>
-
-        <h2>Browser</h2>
-
-        <p>
-          The user is temporarily doing something else.
-        </p>
-
-        <div className="browser-card">
-
-          <span>Meanwhile...</span>
-
-          <b>
-            Scholarship Application
-          </b>
-
-          <small>
-            7/9 fields completed
-          </small>
-
-        </div>
-
-      </div>
-
-      <div className="return-card">
-
-        <span>SESSION CONTINUITY</span>
-
-        <b>
-          Ready to continue your previous task?
-        </b>
-
-        <button
-          className="primary wide"
-          onClick={() => go("interrupt")}
-        >
-          RETURN TO SESSION
-        </button>
-
-      </div>
-
-    </div>
-  );
-}
-
-
-/* ---------------- INTERRUPTION ---------------- */
-
-function Interrupt({ go }) {
+function ContextGap({ go }) {
 
   return (
-    <div className="phone-screen centered">
+    <div className="phone-screen context-gap">
 
-      <div className="warning-icon">
-        ↗
+      <div className="gap-icon">
+        ?
       </div>
 
-      <small>
-        SESSION CONTINUITY
-      </small>
+      <div className="gap-label">
+        SCHOLARSHIP APPLICATION
+      </div>
 
       <h2>
-        Session interrupted
+        You're back.
       </h2>
 
       <p>
-        You switched away from the scholarship application.
-        Your working context was preserved so you can continue.
+        The form is available, but your broader working context
+        isn't visible here.
       </p>
 
-      <div className="save-card">
+      <div className="lost-card">
 
-        <span>RECOVERABLE CONTEXT</span>
-
-        <div className="checkrow">
-          ✓ Task identified
+        <div>
+          <span>WHAT WERE YOU DOING?</span>
+          <b>Not available</b>
         </div>
 
-        <div className="checkrow">
-          ✓ 7 / 9 fields completed
+        <div>
+          <span>WHAT WAS NEXT?</span>
+          <b>Not available</b>
         </div>
 
-        <div className="checkrow">
-          ✓ Next action identified
+        <div>
+          <span>WHY DID YOU LEAVE?</span>
+          <b>Not available</b>
         </div>
 
-        <div className="checkrow">
-          ✓ Sensitive fields filtered
-        </div>
+      </div>
 
+      <div className="problem-message">
+        <b>The context gap</b>
+
+        <span>
+          The application may still contain saved fields,
+          but the user's working intention is not represented.
+        </span>
       </div>
 
       <button
         className="primary wide"
         onClick={() => go("recovery")}
       >
-        RECOVER SESSION
+        SHOW SESSION CONTINUITY
       </button>
 
     </div>
@@ -492,9 +469,13 @@ function Recovery({ go }) {
 
       <div className="recovery-top">
 
-        <span>SESSION RECOVERY</span>
+        <span>
+          SESSION RECOVERY
+        </span>
 
-        <span className="lock">⌾</span>
+        <span className="lock">
+          ⌾
+        </span>
 
       </div>
 
@@ -507,7 +488,7 @@ function Recovery({ go }) {
       </h2>
 
       <p className="recover-sub">
-        We found enough recoverable context to help you continue.
+        We recovered the task context needed to continue.
       </p>
 
       <div className="recovery-card">
@@ -520,7 +501,9 @@ function Recovery({ go }) {
 
           <div>
             <b>Scholarship Application</b>
-            <span>Last active a moment ago</span>
+            <span>
+              Last active a moment ago
+            </span>
           </div>
 
         </div>
@@ -531,13 +514,13 @@ function Recovery({ go }) {
         </div>
 
         <div className="r-row">
-          <span>NEXT ACTION</span>
-          <b>Upload certificate</b>
+          <span>INTENT</span>
+          <b>Find the certificate</b>
         </div>
 
         <div className="r-row">
-          <span>CONTEXT</span>
-          <b>Personal + academic details</b>
+          <span>NEXT ACTION</span>
+          <b>Upload certificate</b>
         </div>
 
       </div>
@@ -609,7 +592,9 @@ function Resumed({ go }) {
 
         <div>
           <b>7 of 9 fields</b>
-          <span>Restored from the previous session</span>
+          <span>
+            Restored from the previous session
+          </span>
         </div>
 
       </div>
@@ -618,7 +603,9 @@ function Resumed({ go }) {
 
         <span>Certificate</span>
 
-        <b>Ready for upload</b>
+        <b>
+          Ready for upload
+        </b>
 
         <i>→</i>
 
@@ -628,13 +615,17 @@ function Resumed({ go }) {
 
         <span>Declaration</span>
 
-        <b>Pending</b>
+        <b>
+          Pending
+        </b>
 
       </div>
 
       <div className="ai-next">
 
-        <span>✦ AI NEXT ACTION</span>
+        <span>
+          ✦ AI NEXT ACTION
+        </span>
 
         <b>
           Upload your certificate, then review the declaration.
@@ -647,6 +638,53 @@ function Resumed({ go }) {
         onClick={() => go("home")}
       >
         TASK COMPLETE →
+      </button>
+
+    </div>
+  );
+}
+
+
+/* ---------------- PHONE NAVIGATION ---------------- */
+
+function PhoneNav({ screen, go }) {
+
+  const back = () => {
+
+    if (screen === "task") go("home");
+    else if (screen === "deviceHome") go("task");
+    else if (screen === "files") go("deviceHome");
+    else if (screen === "contextLost") go("files");
+    else if (screen === "recovery") go("contextLost");
+    else if (screen === "resumed") go("recovery");
+    else go("home");
+
+  };
+
+  return (
+    <div className="phone-nav">
+
+      <button onClick={back}>
+        ‹
+      </button>
+
+      <button onClick={() => go("deviceHome")}>
+        ●
+      </button>
+
+      <button
+        onClick={() => {
+          if (
+            screen === "files" ||
+            screen === "deviceHome"
+          ) {
+            go("task");
+          } else {
+            go("home");
+          }
+        }}
+      >
+        ▢
       </button>
 
     </div>
