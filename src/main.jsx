@@ -111,7 +111,7 @@ function App() {
 
       <footer>
         <span>SESSION CONTINUITY</span>
-        <span>Proof-of-concept • AI context recovery</span>
+        <span>Proof-of-concept •  context recovery</span>
       </footer>
 
     </div>
